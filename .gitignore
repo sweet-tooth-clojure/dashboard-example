@@ -11,9 +11,7 @@ infrastructure/ansible/prod
 logs
 projects.edn
 .shadow-cljs
-public/js/main.js
-public/js/manifest.edn
-public/js/cljs-runtime
-public/stylesheets/*
+resources/public/js
+resources/public/stylesheets
 .cpcache
 out

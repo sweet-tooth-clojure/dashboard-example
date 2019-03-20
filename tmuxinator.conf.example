@@ -1,0 +1,7 @@
+name: de
+root: ~/path/to/dashboard-example
+windows:
+  - shell:
+  - backend: boot dev
+  - shadow: shadow-cljs watch dev
+  - sass: sass --watch resources/stylesheets/main.scss resources/public/stylesheets/main.css

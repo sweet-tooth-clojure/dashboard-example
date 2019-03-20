@@ -1,9 +1,10 @@
 (set-env!
   :source-paths #{"src" "test" "dev/src"}
-  :resource-paths #{"resources" "dev/resources" "test/resources"}
+  :resource-paths #{"resources" "dev/resources"}
   :dependencies '[[org.clojure/clojure "1.10.0"]
                   [org.clojure/test.check "0.9.0" :scope "test"]
                   [org.clojure/clojurescript "1.10.439"]
+                  [adzerk/boot-cljs "RELEASE" :scope "test"]
                   [com.taoensso/timbre "4.10.0"]
 
                   [ring "1.7.1" :exclusions [org.clojure/tools.namespace]]
@@ -17,6 +18,11 @@
                   [org.mindrot/jbcrypt "0.3m"]
                   [reifyhealth/specmonstah "2.0.0-alpha-1", :scope "test"]
 
+                  ;; TODO this is gross
+                  [nrepl "0.6.0" :scope "test"]
+                  [cider/cider-nrepl "0.21.0" :scope "test"]
+                  [refactor-nrepl "2.4.0" :scope "test"]
+
                   ;; duct
                   [duct/core "0.7.0"]
                   [duct/module.logging "0.4.0"]
@@ -24,7 +30,7 @@
                   [integrant "0.7.0"]
 
                   [sweet-tooth/describe "0.1.0"]
-                  [sweet-tooth/sweet-tooth-endpoint "0.3.0"]
+                  [sweet-tooth/sweet-tooth-endpoint "0.4.0"]
                   [sweet-tooth/sweet-tooth-workflow "0.2.6"]])
 
 (load-data-readers!)
@@ -44,7 +50,7 @@
 
 (tnsr/disable-unload!)
 
-(let [db     (:sweet-tooth.endpoint/datomic (dev/prep))
+(let [db     (:sweet-tooth.endpoint.datomic/connection (dev/prep))
       db-uri (select-keys db [:uri])]
   (task-options!
     dev  {:no-cljs true}

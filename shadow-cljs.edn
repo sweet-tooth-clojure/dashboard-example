@@ -1,7 +1,7 @@
 ;; shadow-cljs configuration
 {:deps   true
  :builds {:dev {:target     :browser
-                :output-dir "public/js"
+                :output-dir "resources/public/js"
                 :asset-path "/js"
 
                 :compiler-options {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}                
@@ -14,5 +14,5 @@
                 {:http-root "public"
                  :http-port 3000
                  :preloads  [day8.re-frame-10x.preload]
-                 :before-load dashboard-example.core/stop
-                 :after-load  dashboard-example.core/-main}}}}
+                 :before-load dashboard-example.frontend.core/stop
+                 :after-load  dashboard-example.frontend.core/-main}}}}
