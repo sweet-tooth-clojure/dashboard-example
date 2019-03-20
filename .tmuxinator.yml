@@ -1,5 +1,4 @@
 name: de
-root: ~/path/to/dashboard-example
 windows:
   - shell:
   - backend: boot dev

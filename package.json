@@ -1,0 +1,20 @@
+{
+  "devDependencies": {
+    "shadow-cljs": "^2.3.22"
+  },
+  "dependencies": {
+    "buffer": "^5.2.1",
+    "create-react-class": "^15.6.3",
+    "marked": "^0.5.1",
+    "prop-types": "^15.6.2",
+    "react": "^16.6.3",
+    "react-css-transition-replace": "^3.0.3",
+    "react-dom": "^16.6.3",
+    "react-flip-move": "^3.0.3",
+    "react-highlight": "^0.12.0",
+    "react-highlight.js": "^1.0.7",
+    "react-sticky": "^6.0.3",
+    "react-transition-group": "^2.5.0",
+    "rmwc": "^3.0.10"
+  }
+}
