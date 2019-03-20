@@ -1,0 +1,41 @@
+{:duct.profile/base
+ {:duct.core/project-ns dashboard-example
+
+  ;;-----------
+  ;; middleware
+  ;;-----------
+  :duct.router/cascading
+  [#ig/ref :dashboard-example.endpoint/static]
+
+  :dashboard-example.endpoint/static
+  {}
+  
+  :duct.middleware.web/defaults
+  {:session   {:store #ig/ref :sweet-tooth.endpoint/datomic-session-store}
+   :static    {:resources ""}}
+
+  :sweet-tooth.endpoint/datomic-session-store
+  {:db #ig/ref :sweet-tooth.endpoint/datomic}
+
+  :duct.server.http/jetty
+  {:port #duct/env ["HTTP_SERVER_PORT" Int :or 3010]}
+
+  ;; datomic
+  :sweet-tooth.endpoint/datomic
+  {:uri    #duct/env ["DB_TEST_URI" Str :or "datomic:mem://de"]
+   :schema ["db/base/query.edn"
+            "db/base/report.edn"]
+   :data   []}}
+ 
+ :duct.profile/dev #duct/include "dev.edn"
+
+ :duct.module/logging  {}
+ :duct.module.web/api  {}
+ :duct.module.web/site {}
+ 
+ :sweet-tooth.endpoint/middleware {}
+
+ :sweet-tooth.endpoint/group-routes
+ {[:dashboard-example.endpoint/query
+   :dashboard-example.endpoint/report]
+  {:db #ig/ref :sweet-tooth.endpoint/datomic}}}
