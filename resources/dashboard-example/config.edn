@@ -36,6 +36,10 @@
  
  :sweet-tooth.endpoint/middleware {}
 
+ :sweet-tooth.endpoint/group-routes
+ {[:dashboard-example.backend.endpoint/init]
+  {:db #ig/ref :sweet-tooth.endpoint.datomic/connection}}}
+ 
  ;; :sweet-tooth.endpoint/group-routes
  ;; {[:dashboard-example.backend.endpoint/query
  ;;   :dashboard-example.backend.endpoint/report]

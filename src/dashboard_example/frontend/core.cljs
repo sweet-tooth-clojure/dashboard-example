@@ -17,6 +17,7 @@
             [dashboard-example.frontend.components.app :as app]
             [dashboard-example.frontend.routes :as routes]
             [dashboard-example.frontend.route-lifecycles]
+            [dashboard-example.frontend.handlers]
             
             [goog.events])
   (:import [goog.events EventType]))
@@ -36,17 +37,12 @@
                                          :route-param-fn (fn [_ _ params]
                                                            (when-let [id (or (:db/id params) (:id params))]
                                                              {:id id}))}
-               ::strb/match-route       {:routes         routes/location-routes
-                                         ;; :param-coercion routes/location-route-coercion
-                                         }}))
+               ::strb/match-route       {:routes routes/location-routes}}))
 
 (defn -main []
   (rf/dispatch-sync [::stcf/init-system system-config])
   (rf/dispatch-sync [:init])
-  (r/render [app/app] (stcu/el-by-id "app"))
-  (goog.events/listen js/window
-                      EventType.CLICK
-                      (fn [] (rf/dispatch-sync [:window-clicked]))))
+  (r/render [app/app] (stcu/el-by-id "app")))
 
 (defonce initial-load (delay (-main)))
 @initial-load
