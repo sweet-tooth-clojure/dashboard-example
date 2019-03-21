@@ -11,7 +11,8 @@
   {}
   
   :duct.middleware.web/defaults
-  {:session {:store #ig/ref :sweet-tooth.endpoint.datomic/session-store}}
+  {:session {:store #ig/ref :sweet-tooth.endpoint.datomic/session-store}
+   :static  {:resources ^:append ["public"]}}
 
   :sweet-tooth.endpoint.datomic/session-store
   {:db #ig/ref :sweet-tooth.endpoint.datomic/connection}
@@ -22,12 +23,10 @@
   ;; datomic
   :sweet-tooth.endpoint.datomic/connection
   {:uri      #duct/env ["DB_URI" Str :or "datomic:mem://de"]
-   :schema   ["db/base/query.edn"
-              "db/base/report.edn"]
+   :schema   ["db/base/user-session.edn"]
    :data     []
    :create?  true
-   ;; :migrate? true
-   }}
+   :migrate? true}}
  
  :duct.profile/dev #duct/include "dev.edn"
 

@@ -12,5 +12,8 @@
   
   (apply routes
          ;; load the single page app
-         (map (fn [path] (GET path [] (el/html-resource "index.html")))
+         (map (fn [path]
+                (GET path []
+                  (-> (resp/resource-response "index.html" {:root "public"})
+                      (resp/content-type "text/html"))))
               app-paths)))

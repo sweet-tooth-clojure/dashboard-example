@@ -1,0 +1,16 @@
+{:dashboard-example/base-user-session-schema
+ {:txes [[{:db/ident :user-session/key
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/uuid
+           :db/cardinality :db.cardinality/one
+           :db/unique :db.unique/value
+           :db/index true
+           :db/doc "Key to look up session"
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :user-session/data
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/string
+           :db/cardinality :db.cardinality/one
+           :db/doc "All session data"
+           :db.install/_attribute :db.part/db}]]}}
