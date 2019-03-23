@@ -1,0 +1,84 @@
+{:dashboard-example/base-user-movie
+ {:txes [[{:db/ident :movie/year
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/long
+           :db/cardinality :db.cardinality/one
+           :db/doc "Year movie was released"
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :movie/imdb
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/string
+           :db/cardinality :db.cardinality/one
+           :db/doc "imdb id"
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :movie/title
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/string
+           :db/cardinality :db.cardinality/one
+           :db/doc "imdb id"
+           :db.install/_attribute :db.part/db}
+          
+          {:db/ident :movie/test
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/string
+           :db/cardinality :db.cardinality/one
+           :db/doc "To what degree does it pass the bechdel test?"
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :movie/clean-test
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/string
+           :db/cardinality :db.cardinality/one
+           :db/doc "Without '-disagree', whatever that means"
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :movie/binary
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/boolean
+           :db/cardinality :db.cardinality/one
+           :db/doc "simple yes/no does it pass"
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :movie/budget
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/boolean
+           :db/cardinality :db.cardinality/one
+           :db/doc "movie budget"
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :movie/domgross
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/boolean
+           :db/cardinality :db.cardinality/one
+           :db/doc "how much it made in US"
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :movie/intgross
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/boolean
+           :db/cardinality :db.cardinality/one
+           :db/doc "how much it made internatinally"
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :movie/budget-2013
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/boolean
+           :db/cardinality :db.cardinality/one
+           :db/doc "budget adjusted to 2013 numbers"
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :movie/domgross-2013
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/boolean
+           :db/cardinality :db.cardinality/one
+           :db/doc "domgross adjusted to 2013 numbers"
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :movie/intgross-2013
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/boolean
+           :db/cardinality :db.cardinality/one
+           :db/doc "domgross adjusted to 2013 numbers"
+           :db.install/_attribute :db.part/db}]]}}

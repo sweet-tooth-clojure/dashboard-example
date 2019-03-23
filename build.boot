@@ -17,6 +17,7 @@
                   [medley "0.7.1"]
                   [org.mindrot/jbcrypt "0.3m"]
                   [reifyhealth/specmonstah "2.0.0-alpha-1", :scope "test"]
+                  [org.clojure/data.csv "0.1.4"]
 
                   ;; TODO this is gross
                   [nrepl "0.6.0" :scope "test"]

@@ -23,7 +23,8 @@
   ;; datomic
   :sweet-tooth.endpoint.datomic/connection
   {:uri      #duct/env ["DB_URI" Str :or "datomic:mem://de"]
-   :schema   ["db/base/user-session.edn"]
+   :schema   ["db/base/user-session.edn"
+              "db/base/movie.edn"]
    :data     []
    :create?  true
    :migrate? true}}

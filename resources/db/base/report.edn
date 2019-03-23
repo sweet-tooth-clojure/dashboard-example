@@ -1,0 +1,42 @@
+{:dashboard-example/base-report
+ {:txes [[{:db/ident :report/name
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/long
+           :db/cardinality :db.cardinality/one
+           :db/doc "Year movie was released"
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :report/dimensions
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/long
+           :db/cardinality :db.cardinality/many
+           :db/doc "Year movie was released"
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :report-dimension/field-name
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/keyword
+           :db/cardinality :db.cardinality/one
+           :db/doc "field name"
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :report-dimension/value-set
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/keyword
+           :db/cardinality :db.cardinality/many
+           :db/doc "which values are allowed from an enum"
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :report-dimension/min
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/long
+           :db/cardinality :db.cardinality/one
+           :db/doc "min value of an int field"
+           :db.install/_attribute :db.part/db}
+          
+          {:db/ident :report-dimension/max
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/long
+           :db/cardinality :db.cardinality/one
+           :db/doc "max vlue of an int field"
+           :db.install/_attribute :db.part/db}]]}}
