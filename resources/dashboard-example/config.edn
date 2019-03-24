@@ -27,7 +27,15 @@
               "db/base/movie.edn"]
    :data     []
    :create?  true
-   :migrate? true}}
+   :migrate? true
+   ;;:delete?  true
+   
+   }
+
+  :dashboard-example.backend.data/load
+  {:db #ig/ref :sweet-tooth.endpoint.datomic/connection}}
+ ;; end base profile
+ ;;-----------------
  
  :duct.profile/dev #duct/include "dev.edn"
 

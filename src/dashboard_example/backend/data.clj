@@ -1,6 +1,10 @@
 (ns dashboard-example.backend.data
   (:require [clojure.data.csv :as csv]
-            [clojure.java.io :as io]))
+            [clojure.java.io :as io]
+            [integrant.core :as ig]
+            [datomic.api :as d]
+            [com.flyingmachine.datomic-junk :as dj]
+            [medley.core :as medley]))
 
 
 (defn load-data
@@ -33,12 +37,26 @@
 
 (defn parse-data
   [data]
-  (map (fn [row]
-         (-> (zipmap fields (map row [0 1 2 3 4 5 6 7 8 10 11 12]))
-             (update-vals {[:movie/year :movie/budget :movie/domgross :movie/domgross-2013
-                            :movie/budget-2013 :movie/intgross :movie/intgross-2013]
-                           #(Long. %)
+  (mapv (fn [row]
+          (medley/filter-vals
+            identity
+            (-> (->> [0 1 2 3 4 5 6 7 8 10 11 12]
+                     (map row)
+                     (zipmap fields)
+                     (medley/filter-vals #(not= % "#N/A")))
+                (update-vals {[:movie/year :movie/budget :movie/domgross :movie/domgross-2013
+                               :movie/budget-2013 :movie/intgross :movie/intgross-2013]
+                              #(when % (Long. %))
 
-                           [:movie/binary] #(= "PASS" %)
-                           [:movie/clean-test :movie/test] keyword})))
-       data))
+                              [:movie/binary] #(= "PASS" %)
+                              [:movie/clean-test :movie/test] (comp keyword #(str "movie.test/" %))}))))
+        data))
+
+(defmethod ig/init-key ::load [_ {:keys [db]}]
+  (let [conn (d/connect (:uri db))]
+    (when-not (dj/one (d/db conn) [:movie/title])
+      (->> (load-data)
+           parse-data
+           (map #(assoc % :db/id (d/tempid :db.part/user)))
+           (d/transact conn)
+           (deref)))))
