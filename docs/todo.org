@@ -22,12 +22,22 @@ https://github.com/washingtonpost/data-homicides
 https://github.com/fivethirtyeight/data/blob/master/bechdel/movies.csv
 *** bechdel data
 **** use set of keywords for test and clean-test
-*** dimensional analysis
+*** report
 **** select fields, and boundaries on those fields
 **** for sets, allow members of the set to be chosen
 **** for numbers, allow ranges
 **** how to store this in datomic?
+**** TODO add set filter
+**** TODO limit to 2013 numbers
+*** ui
+**** format numbers
+**** report
+**** table
+***** headers
 ** what to explore
 *** frontend
 *** backend
 *** workflow
+*** decide
+**** change to rules
+**** do validation
