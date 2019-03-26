@@ -28,8 +28,7 @@
    :data     []
    :create?  true
    :migrate? true
-   ;;:delete?  true
-   
+   ;; :delete?  true
    }
 
   :dashboard-example.backend.data/load

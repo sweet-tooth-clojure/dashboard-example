@@ -4,38 +4,70 @@
             [sweet-tooth.frontend.form.flow :as stff]
             [sweet-tooth.frontend.form.components :as stfc]))
 
+(defprotocol TableFormat
+  (format-cell [x]))
+
+(extend-protocol TableFormat
+  cljs.core/Keyword
+  (format-cell [x] (name x))
+
+  number
+  (format-cell [x] (.toLocaleString x))
+
+  string
+  (format-cell [x] x)
+
+  object
+  (format-cell [x] x)
+
+  boolean
+  (format-cell [x] (if x "yes" "no"))
+
+  nil
+  (format-cell [x] nil))
+
 (def fields
-  [:movie/year :movie/imdb :movie/title :movie/test :movie/clean-test
-   :movie/binary :movie/budget :movie/domgross :movie/intgross
+  [:movie/year :movie/imdb :movie/title :movie/clean-test :movie/binary
    :movie/budget-2013 :movie/domgross-2013 :movie/intgross-2013])
 
-(defn report
+(defn report-form
   []
   (let [form-path                  [:report :create]
-        {:keys [field form-state]} (stfc/form form-path)]
+        {:keys [input form-state]} (stfc/form form-path)]
     [:form.create-report (stfc/on-submit form-path)
-     [field :text :report/title]
-     [:div
-      [field :number :report/budget-min]
-      [field :number :report/budget-max]]
-     [:div
-      [field :number :report/domgross-min]
-      [field :number :report/domgross-max]]
-
-     [:div
-      [field :number :report/intgross-min]
-      [field :number :report/intgross-max]]]))
+     [:table
+      [:tbody
+       [:tr
+        [:td "Title"]
+        [:td [input :text :report/title]]]
+       [:tr
+        [:td "Budget"]
+        [:td [input :number :report/budget-2013-min {:placeholder "min"}]]
+        [:td "-"]
+        [:td [input :number :report/budget-2013-max {:placeholder "max"}]]]
+       [:tr
+        [:td "Domestic Gross"]
+        [:td [input :number :report/domgross-2013-min {:placeholder "min"}]]
+        [:td "-"]
+        [:td [input :number :report/domgross-2013-max {:placeholder "max"}]]]
+       [:tr
+        [:td "Intl Gross"]
+        [:td [input :number :report/intgross-2013-min {:placeholder "min"}]]
+        [:td "-"]
+        [:td [input :number :report/intgross-2013-max {:placeholder "max"}]]]]]]))
 
 (defn row
   [movie]
   (into ^{:key (:db/id movie)} [:tr]
-        (map (fn [field] [:td (str (field movie))]) fields)))
+        (map (fn [field] [:td (format-cell (field movie))]) fields)))
 
 (defn app
   []
   (let [movies @(rf/subscribe [::ds/filtered-movies])]
     [:div 
-     [report]
+     [report-form]
      [:div (str "showing " (count movies) " movies")]
      [:table
+      [:thead
+       [:tr (map (fn [field] ^{:key field} [:th (name field)]) fields)]]
       [:tbody (map row movies)]]]))

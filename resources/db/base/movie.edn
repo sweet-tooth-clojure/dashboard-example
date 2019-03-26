@@ -1,26 +1,5 @@
 {:dashboard-example/base-user-movie
- {:txes [[{:db/ident :movie.test/notalk
-           :db/id #db/id[:db.part/db]}
-          {:db/ident :movie.test/ok-disagree
-           :db/id #db/id[:db.part/db]}
-          {:db/ident :movie.test/notalk-disagree
-           :db/id #db/id[:db.part/db]}
-          {:db/ident :movie.test/men
-           :db/id #db/id[:db.part/db]}
-          {:db/ident :movie.test/ok
-           :db/id #db/id[:db.part/db]}
-          {:db/ident :movie.test/nowomen-disagree
-           :db/id #db/id[:db.part/db]}
-          {:db/ident :movie.test/dubious-disagree
-           :db/id #db/id[:db.part/db]}
-          {:db/ident :movie.test/men-disagree
-           :db/id #db/id[:db.part/db]}
-          {:db/ident :movie.test/dubious
-           :db/id #db/id[:db.part/db]}
-          {:db/ident :movie.test/nowomen
-           :db/id #db/id[:db.part/db]}
-          
-          {:db/ident :movie/year
+ {:txes [[{:db/ident :movie/year
            :db/id #db/id[:db.part/db]
            :db/valueType :db.type/long
            :db/cardinality :db.cardinality/one
@@ -43,14 +22,14 @@
           
           {:db/ident :movie/test
            :db/id #db/id[:db.part/db]
-           :db/valueType :db.type/ref
+           :db/valueType :db.type/keyword
            :db/cardinality :db.cardinality/one
            :db/doc "To what degree does it pass the bechdel test?"
            :db.install/_attribute :db.part/db}
 
           {:db/ident :movie/clean-test
            :db/id #db/id[:db.part/db]
-           :db/valueType :db.type/ref
+           :db/valueType :db.type/keyword
            :db/cardinality :db.cardinality/one
            :db/doc "Without '-disagree', whatever that means"
            :db.install/_attribute :db.part/db}

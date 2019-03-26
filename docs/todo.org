@@ -25,10 +25,11 @@ https://github.com/fivethirtyeight/data/blob/master/bechdel/movies.csv
 *** report
 **** select fields, and boundaries on those fields
 **** for sets, allow members of the set to be chosen
-**** for numbers, allow ranges
-**** how to store this in datomic?
+**** DONE for numbers, allow ranges
+**** DONE how to store this in datomic?
 **** TODO add set filter
 **** TODO limit to 2013 numbers
+**** TODO 
 *** ui
 **** format numbers
 **** report
@@ -41,3 +42,13 @@ https://github.com/fivethirtyeight/data/blob/master/bechdel/movies.csv
 *** decide
 **** change to rules
 **** do validation
+** steps
+*** TODO limit to 2013 numbers
+*** TODO add set filter
+*** TODO save reports
+*** TODO format report filtering
+*** TODO chart
+**** compare total passing by not
+**** compare budget totals
+**** compare gross totals
+**** compare compare total/num movies in category

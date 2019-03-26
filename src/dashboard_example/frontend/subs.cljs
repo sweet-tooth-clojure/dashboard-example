@@ -14,11 +14,11 @@
   ::movies
   [:report :create]
   [[:report/title stfilter/filter-query :movie/title]
-   [:report/budget-min stfilter/filter-attr>= :movie/budget]
-   [:report/budget-max stfilter/filter-attr<= :movie/budget]
+   [:report/budget-2013-min stfilter/filter-attr>= :movie/budget-2013]
+   [:report/budget-2013-max stfilter/filter-attr<= :movie/budget-2013]
 
-   [:report/domgross-min stfilter/filter-attr>= :movie/domgross]
-   [:report/domgross-max stfilter/filter-attr<= :movie/domgross]
+   [:report/domgross-2013-min stfilter/filter-attr>= :movie/domgross-2013]
+   [:report/domgross-2013-max stfilter/filter-attr<= :movie/domgross-2013]
 
-   [:report/intgross-min stfilter/filter-attr>= :movie/intgross]
-   [:report/intgross-max stfilter/filter-attr<= :movie/intgross]])
+   [:report/intgross-2013-min stfilter/filter-attr>= :movie/intgross-2013]
+   [:report/intgross-2013-max stfilter/filter-attr<= :movie/intgross-2013]])
