@@ -43,8 +43,8 @@ https://github.com/fivethirtyeight/data/blob/master/bechdel/movies.csv
 **** change to rules
 **** do validation
 ** steps
-*** TODO limit to 2013 numbers
-*** TODO add set filter
+*** DONE limit to 2013 numbers
+*** DONE add set filter
 *** TODO save reports
 *** TODO format report filtering
 *** TODO chart
@@ -52,3 +52,4 @@ https://github.com/fivethirtyeight/data/blob/master/bechdel/movies.csv
 **** compare budget totals
 **** compare gross totals
 **** compare compare total/num movies in category
+*** TODO better headers for table

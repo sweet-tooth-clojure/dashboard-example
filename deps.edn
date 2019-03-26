@@ -14,7 +14,7 @@
   reifyhealth/specmonstah    {:mvn/version "2.0.0-alpha-1"}
   aysylu/loom                {:mvn/version "1.0.2"}
   
-  sweet-tooth/sweet-tooth-frontend {:mvn/version "0.6.3"}}
+  sweet-tooth/sweet-tooth-frontend {:mvn/version "0.6.4-SNAPSHOT"}}
 
  :aliases
  {:dev {:extra-deps {cider/cider-nrepl {:mvn/version "0.21.0"}

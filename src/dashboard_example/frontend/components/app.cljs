@@ -1,6 +1,7 @@
 (ns dashboard-example.frontend.components.app
   (:require [re-frame.core :as rf]
             [dashboard-example.frontend.subs :as ds]
+            [dashboard-example.cross.data :as cd]
             [sweet-tooth.frontend.form.flow :as stff]
             [sweet-tooth.frontend.form.components :as stfc]))
 
@@ -54,7 +55,19 @@
         [:td "Intl Gross"]
         [:td [input :number :report/intgross-2013-min {:placeholder "min"}]]
         [:td "-"]
-        [:td [input :number :report/intgross-2013-max {:placeholder "max"}]]]]]]))
+        [:td [input :number :report/intgross-2013-max {:placeholder "max"}]]]
+       [:tr
+        [:td "Test Result"]
+        [:td (map (fn [result]
+                    [:label (name result) [input :checkbox-set :report/clean-test {:value result}]])
+                  cd/test-result-options)]]
+       [:tr
+        [:td "Passes test?"]
+        [:td
+         [:label "yes" [input :radio :report/binary {:value true}]]
+         [:label "no"  [input :radio :report/binary {:value false}]]
+         [:span {:on-click #(stfc/dispatch-change [:report :create] :report/binary nil)}
+          "clear"]]]]]]))
 
 (defn row
   [movie]
