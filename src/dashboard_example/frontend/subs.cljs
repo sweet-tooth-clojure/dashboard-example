@@ -12,7 +12,7 @@
 (stfilter/reg-filtered-sub
   ::filtered-movies
   ::movies
-  [:report :create]
+  [:reports :create]
   [[:report/title stfilter/filter-query :movie/title]
    
    [:report/budget-2013-min stfilter/filter-attr>= :movie/budget-2013]

@@ -31,15 +31,16 @@
   [:movie/year :movie/imdb :movie/title :movie/clean-test :movie/binary
    :movie/budget-2013 :movie/domgross-2013 :movie/intgross-2013])
 
+
 (defn report-form
   []
-  (let [form-path                  [:report :create]
+  (let [form-path                  [:reports :create]
         {:keys [input form-state]} (stfc/form form-path)]
     [:form.create-report (stfc/on-submit form-path)
      [:table
       [:tbody
        [:tr
-        [:td "Title"]
+        [:td "Movie Title"]
         [:td [input :text :report/title]]]
        [:tr
         [:td "Budget"]
@@ -66,8 +67,9 @@
         [:td
          [:label "yes" [input :radio :report/binary {:value true}]]
          [:label "no"  [input :radio :report/binary {:value false}]]
-         [:span {:on-click #(stfc/dispatch-change [:report :create] :report/binary nil)}
-          "clear"]]]]]]))
+         [:span {:on-click #(stfc/dispatch-change [:reports :create] :report/binary nil)}
+          "clear"]]]]]
+     [:input {:type "submit"}]]))
 
 (defn row
   [movie]

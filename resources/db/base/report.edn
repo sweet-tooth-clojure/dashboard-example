@@ -3,40 +3,60 @@
            :db/id #db/id[:db.part/db]
            :db/valueType :db.type/long
            :db/cardinality :db.cardinality/one
-           :db/doc "Year movie was released"
+           :db/doc ""
            :db.install/_attribute :db.part/db}
 
-          {:db/ident :report/dimensions
+          {:db/ident :report/title
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/string
+           :db/cardinality :db.cardinality/one
+           :db/doc "movie title"
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :report/budget-2013-min
            :db/id #db/id[:db.part/db]
            :db/valueType :db.type/long
-           :db/cardinality :db.cardinality/many
-           :db/doc "Year movie was released"
+           :db/cardinality :db.cardinality/one
            :db.install/_attribute :db.part/db}
 
-          {:db/ident :report-dimension/field-name
+          {:db/ident :report/budget-2013-max
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/long
+           :db/cardinality :db.cardinality/one
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :report/domgross-2013-min
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/long
+           :db/cardinality :db.cardinality/one
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :report/domgross-2013-max
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/long
+           :db/cardinality :db.cardinality/one
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :report/intgross-2013-min
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/long
+           :db/cardinality :db.cardinality/one
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :report/intgross-2013-max
+           :db/id #db/id[:db.part/db]
+           :db/valueType :db.type/long
+           :db/cardinality :db.cardinality/one
+           :db.install/_attribute :db.part/db}
+
+          {:db/ident :report/clean-test
            :db/id #db/id[:db.part/db]
            :db/valueType :db.type/keyword
-           :db/cardinality :db.cardinality/one
-           :db/doc "field name"
-           :db.install/_attribute :db.part/db}
-
-          {:db/ident :report-dimension/value-set
-           :db/id #db/id[:db.part/db]
-           :db/valueType :db.type/keyword
            :db/cardinality :db.cardinality/many
-           :db/doc "which values are allowed from an enum"
            :db.install/_attribute :db.part/db}
 
-          {:db/ident :report-dimension/min
+          {:db/ident :report/binary
            :db/id #db/id[:db.part/db]
-           :db/valueType :db.type/long
+           :db/valueType :db.type/boolean
            :db/cardinality :db.cardinality/one
-           :db/doc "min value of an int field"
-           :db.install/_attribute :db.part/db}
-          
-          {:db/ident :report-dimension/max
-           :db/id #db/id[:db.part/db]
-           :db/valueType :db.type/long
-           :db/cardinality :db.cardinality/one
-           :db/doc "max vlue of an int field"
            :db.install/_attribute :db.part/db}]]}}

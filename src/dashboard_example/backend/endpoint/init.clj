@@ -11,7 +11,7 @@
                            (ec/format-ent)
                            vector))}})
 
-(def endpoint (ec/endpoint "/init" decisions))
+(def endpoint (ec/endpoint "/api/init" decisions))
 
 (defmethod ig/init-key :dashboard-example.backend.endpoint/init [_ options]
   (endpoint options))

@@ -11,8 +11,9 @@
   {}
   
   :duct.middleware.web/defaults
-  {:session {:store #ig/ref :sweet-tooth.endpoint.datomic/session-store}
-   :static  {:resources ^:append ["public"]}}
+  {:session  {:store #ig/ref :sweet-tooth.endpoint.datomic/session-store}
+   :static   {:resources ^:append ["public"]}
+   :security {:anti-forgery false}}
 
   :sweet-tooth.endpoint.datomic/session-store
   {:db #ig/ref :sweet-tooth.endpoint.datomic/connection}
@@ -24,7 +25,8 @@
   :sweet-tooth.endpoint.datomic/connection
   {:uri      #duct/env ["DB_URI" Str :or "datomic:mem://de"]
    :schema   ["db/base/user-session.edn"
-              "db/base/movie.edn"]
+              "db/base/movie.edn"
+              "db/base/report.edn"]
    :data     []
    :create?  true
    :migrate? true
@@ -45,7 +47,8 @@
  :sweet-tooth.endpoint/middleware {}
 
  :sweet-tooth.endpoint/group-routes
- {[:dashboard-example.backend.endpoint/init]
+ {[:dashboard-example.backend.endpoint/init
+   :dashboard-example.backend.endpoint/report]
   {:db #ig/ref :sweet-tooth.endpoint.datomic/connection}}}
 
 ;; :sweet-tooth.endpoint/group-routes

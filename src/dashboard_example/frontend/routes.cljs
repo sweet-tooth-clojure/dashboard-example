@@ -21,4 +21,5 @@
     url))
 
 (def api-routes
-  [["/init" :init]])
+  [["/api/init" :init]
+   ["/api/report" :reports]])
