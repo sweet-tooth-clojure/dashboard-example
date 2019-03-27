@@ -1,0 +1,26 @@
+
+html {
+  box-sizing: border-box;
+}
+
+html, #app {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100%;
+  position: relative;
+  color: $charcoal;
+  margin: 0;
+  padding-top: 0.1px;
+  box-sizing: border-box;
+  background-size: cover;
+  background: #fafafa;
+}
+
+
+#app {
+  margin: 2em auto;
+  max-width: 60em;
+}

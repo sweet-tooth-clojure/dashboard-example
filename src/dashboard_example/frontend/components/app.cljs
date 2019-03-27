@@ -1,9 +1,7 @@
 (ns dashboard-example.frontend.components.app
   (:require [re-frame.core :as rf]
             [dashboard-example.frontend.subs :as ds]
-            [dashboard-example.cross.data :as cd]
-            [sweet-tooth.frontend.form.flow :as stff]
-            [sweet-tooth.frontend.form.components :as stfc]))
+            [dashboard-example.frontend.components.reports :as dr]))
 
 (defprotocol TableFormat
   (format-cell [x]))
@@ -27,62 +25,22 @@
   nil
   (format-cell [x] nil))
 
-(def fields
+(def attrs
   [:movie/year :movie/imdb :movie/title :movie/clean-test :movie/binary
    :movie/budget-2013 :movie/domgross-2013 :movie/intgross-2013])
-
-
-(defn report-form
-  []
-  (let [form-path                  [:reports :create]
-        {:keys [input form-state]} (stfc/form form-path)]
-    [:form.create-report (stfc/on-submit form-path)
-     [:table
-      [:tbody
-       [:tr
-        [:td "Movie Title"]
-        [:td [input :text :report/title]]]
-       [:tr
-        [:td "Budget"]
-        [:td [input :number :report/budget-2013-min {:placeholder "min"}]]
-        [:td "-"]
-        [:td [input :number :report/budget-2013-max {:placeholder "max"}]]]
-       [:tr
-        [:td "Domestic Gross"]
-        [:td [input :number :report/domgross-2013-min {:placeholder "min"}]]
-        [:td "-"]
-        [:td [input :number :report/domgross-2013-max {:placeholder "max"}]]]
-       [:tr
-        [:td "Intl Gross"]
-        [:td [input :number :report/intgross-2013-min {:placeholder "min"}]]
-        [:td "-"]
-        [:td [input :number :report/intgross-2013-max {:placeholder "max"}]]]
-       [:tr
-        [:td "Test Result"]
-        [:td (map (fn [result]
-                    [:label (name result) [input :checkbox-set :report/clean-test {:value result}]])
-                  cd/test-result-options)]]
-       [:tr
-        [:td "Passes test?"]
-        [:td
-         [:label "yes" [input :radio :report/binary {:value true}]]
-         [:label "no"  [input :radio :report/binary {:value false}]]
-         [:span {:on-click #(stfc/dispatch-change [:reports :create] :report/binary nil)}
-          "clear"]]]]]
-     [:input {:type "submit"}]]))
 
 (defn row
   [movie]
   (into ^{:key (:db/id movie)} [:tr]
-        (map (fn [field] [:td (format-cell (field movie))]) fields)))
+        (map (fn [attr] [:td (format-cell (attr movie))]) attrs)))
 
 (defn app
   []
   (let [movies @(rf/subscribe [::ds/filtered-movies])]
-    [:div 
-     [report-form]
-     [:div (str "showing " (count movies) " movies")]
-     [:table
-      [:thead
-       [:tr (map (fn [field] ^{:key field} [:th (name field)]) fields)]]
-      [:tbody (map row movies)]]]))
+    [:div
+     [dr/reports]
+     [:div.data (str "showing " (count movies) " movies")
+      [:table
+       [:thead
+        [:tr (map (fn [attr] ^{:key attr} [:th (name attr)]) attrs)]]
+       [:tbody (map row movies)]]]]))

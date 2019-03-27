@@ -1,0 +1,117 @@
+// uses compass stuff
+
+$ams-scale: 1.25;
+$ams-up1: $ams-scale;
+$ams-up2: $ams-up1 * $ams-scale;
+$ams-up3: $ams-up2 * $ams-scale;
+$ams-up4: $ams-up3 * $ams-scale;
+$ams-up5: $ams-up4 * $ams-scale;
+$ams-up6: $ams-up5 * $ams-scale;
+$ams-down1: 1 / $ams-scale;
+$ams-down2: $ams-down1 / $ams-scale;
+
+
+$baseline-scaling: false;
+
+// enable formal baseline grid
+// snaps all type to the baseline grid
+$baseline-snap: false;
+
+// map for flexible retrieval of breakpoint info
+$breakpoint-map: (
+    0: (
+        start:      0px,
+        max:        420px,
+        rootsize:   16px
+    ),
+    1: (
+        start:      480px,
+        max:        560px,
+        rootsize:   16px
+    ),
+    2: (
+        start:      768px,
+        max:        840px,
+        rootsize:   16px
+    ),
+    3: (
+        start:      980px,
+        max:        1080px,
+        rootsize:   16px
+    ),
+    4: (
+        start:      1280px,
+        max:        1440px,
+        rootsize:   16px
+    )
+);
+
+@include megatype;
+
+$sans: (
+  font-family: 'Source Sans Pro, Helvetica Neue, Arial, sans-serif',
+  regular: normal,
+  bold: bold,
+  cap-height: 0.71,
+  cap-position: 0.5
+);
+
+$serif: (
+  font-family: 'Georgia, serif',
+  regular: normal,
+  boeitherld: bold,
+  cap-height: 0.69,
+  cap-position: 0.5
+);
+
+h1 {
+  @include typeset($sans, $ams-up3, 2, 0, 1);
+}
+
+h2 {
+  @include typeset($sans, $ams-up2, 2, 1, 1);
+}
+
+h3 {
+  @include typeset($sans, $ams-up1, 2, 1, 1);
+}
+
+h4 {
+  @include typeset($sans, $ams-up1, 2, 1, 1);
+}
+
+// Paragraph.
+body {
+  font-family: font-family-of($sans);
+  @include typeset($sans, 1, 1, 0, 2);
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+ol {
+  list-style: decimal;
+  margin-bottom: 1rem;
+}
+
+.secondary ol {
+  list-style: none;
+}
+
+li p {
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: font-family-of($sans);
+  font-weight: 400;
+}

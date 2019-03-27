@@ -1,0 +1,18 @@
+{
+  "name": "mwd",
+  "version": "0.0.1",
+  "authors": [
+    "Daniel Higginbotham <daniel@flyingmachinestudios.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "megatype": "1.1.2"
+  }
+}

@@ -15,7 +15,6 @@
             :handle-created
             (fn [ctx]
               (let [db (ed/db-after ctx)]
-                
                 [(-> db
                      (d/pull ["*"] (:db/id (ed/created-entity ctx)))
                      (with-meta {:ent-type :report})

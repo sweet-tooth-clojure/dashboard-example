@@ -11,7 +11,7 @@
 
                 ;; start a development http server on http://localhost:8020
                 :devtools
-                {:http-root "public"
+                {:http-root "resources/public"
                  :http-port 3010
                  :preloads  [day8.re-frame-10x.preload]
                  :before-load dashboard-example.frontend.core/stop
