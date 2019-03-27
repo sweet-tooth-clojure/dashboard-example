@@ -33,11 +33,12 @@
 (def system-config
   (meta-merge stconfig/default-config
               {::stsda/sync-dispatch-fn {}
-               ::stsdb/req-adapter      {:routes         routes/api-routes
+               ::stsdb/req-adapter      {:routes         (ig/ref ::routes/api-routes)
                                          :route-param-fn (fn [_ _ params]
                                                            (when-let [id (or (:db/id params) (:id params))]
                                                              {:id id}))}
-               ::strb/match-route       {:routes routes/location-routes}}))
+               ::strb/match-route       {:routes routes/location-routes}
+               ::routes/api-routes      "http://localhost\\:3010/api"}))
 
 (defn -main []
   (rf/dispatch-sync [::stcf/init-system system-config])

@@ -20,6 +20,14 @@
       (log/warn "could not resolve route" ::unknown-browser-route {:route-name route-name :args args}))
     url))
 
-(def api-routes
-  [["/api/init" :init]
-   ["/api/report" :reports]])
+(defn api-routes
+  [prefix]
+  (mapv (fn [route] (update route 0 #(str prefix %)))
+        [["/init" :init]
+         ["/report" :reports]]))
+
+(defmethod ig/init-key ::api-routes
+  [_ prefix]
+  (let [x (api-routes prefix)]
+    (println "API ROUTES" (str x))
+    x))
